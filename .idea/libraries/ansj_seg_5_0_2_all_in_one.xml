@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ansj_seg-5.0.2-all-in-one">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../my_lib/PKUSUMSUM-lib/lib/ansj_seg-5.0.2-all-in-one.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
