@@ -2,7 +2,7 @@
 ## 文本自动摘要算法：用Word2Vec改进的TextRank算法
 
 #### 结果对比：在5000个中文文本样本上的结果
-![](https://github.com/xuyiqiang-learn/W2V_TextRank/tree/master/jpg/result.jpg)
+![](/jpg/result.jpg)
 
 ## 评价指标
 
