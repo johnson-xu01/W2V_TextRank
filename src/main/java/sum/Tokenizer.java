@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import org.ansj.domain.Result;
 import org.ansj.domain.Term;
 import org.ansj.splitWord.analysis.ToAnalysis;
+import sensim.utils.Tuple;
 
 public class Tokenizer {
     public ArrayList<String> passage = new ArrayList<String>();
@@ -156,7 +157,7 @@ public class Tokenizer {
     }
 
     //这里要好好读一读,并修改一下
-    public ArrayList<String> tokenizeChn(String inFile, String stopwordPath) throws IOException {
+    public Tuple<ArrayList<String>, StringBuffer> tokenizeChn(String inFile, String stopwordPath) throws IOException {
         StringBuffer buffer = new StringBuffer();
         String line;
         if (!stopwordPath.equals("n") && !stopwordPath.equals("y"))
@@ -165,6 +166,7 @@ public class Tokenizer {
         line = reader.readLine();
         while (line != null) {
             buffer.append(line);
+//            buffer.append("。");
             buffer.append("\n");
             line = reader.readLine();
         }
@@ -188,7 +190,6 @@ public class Tokenizer {
             word.add(tmpsen);
         }
         stemmerWord();
-        return passage;
+        return new Tuple<>(passage, buffer);
     }
-
 }

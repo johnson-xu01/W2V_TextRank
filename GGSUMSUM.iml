@@ -13,5 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ansj_seg-5.0.2-all-in-one" level="project" />
     <orderEntry type="library" name="stanford-ner" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.5" level="project" />
+    <orderEntry type="library" name="slf4j-nop-1.7.21" level="project" />
   </component>
 </module>

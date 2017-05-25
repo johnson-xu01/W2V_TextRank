@@ -92,7 +92,7 @@ public class run {
 
         switch (method) {
             case "textrank": {
-                TextRank textrank = new TextRank();
+                TextRank_V2 textrank = new TextRank_V2();
                 textrank.Summarize(arg);
                 break;
             }

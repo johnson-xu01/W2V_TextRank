@@ -2,11 +2,11 @@ package sum;
 
 import java.io.*;
 
-public class W2V_TextRank {
+public class W2V_TextRank_test {
     public Doc myDoc = new Doc();
     public double[][] similarity;
 
-    public void Summarize(String args[]) throws IOException {
+    public String Summarize(String args[]) throws IOException {
 
     	/* Read files */
         String[] singleFile = new String[1];
@@ -46,30 +46,16 @@ public class W2V_TextRank {
                 minus += add;
             }
         }
-
         myDoc.pickSentence(u);
-        /* Output the abstract */
-        outputAbstract(args[1]);
-    }
-
-    public void outputAbstract(String fileName) {
-        try {
-            File outfile = new File(fileName);
-            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(outfile), "utf-8");
-            BufferedWriter writer = new BufferedWriter(write);
-            if (myDoc.summaryId.get(0) < 0) {
-                writer.write(myDoc.article.trim());
-            } else {
-                for (int i : myDoc.summaryId) {
-                    //System.out.println(myDoc.originalSen.get(i));
-                    writer.write(myDoc.originalSen.get(i));
-                    // writer.write("\n");
-                }
+        String res = "";
+        if (myDoc.summaryId.get(0) < 0) {
+            res = myDoc.article.trim();
+        } else {
+            for (int i : myDoc.summaryId) {
+                res += myDoc.originalSen.get(i);
             }
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("There are errors in the output.");
-            e.printStackTrace();
         }
+        return res;
+
     }
 }

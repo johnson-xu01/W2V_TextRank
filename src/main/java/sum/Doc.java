@@ -26,6 +26,7 @@ public class Doc {
     public double[] idf;//idf of words
     public double[][] sim, normalSim;
     public int maxlen;//the maxlen of the summary
+    public String article;//原文
     // public String outfile;
     ArrayList<Integer> summaryId = new ArrayList<>();//index of the sentence picked
     HashMap<String, Integer> dic = new HashMap<String, Integer>();//map words into number
@@ -36,8 +37,12 @@ public class Doc {
         Tokenizer mytoken = new Tokenizer();
         ArrayList<String> tmp = new ArrayList<>();
         if (language.equals("1"))//1 represent Chinese
-            tmp = mytoken.tokenizeChn(Topicfile, stopwordPath);
-        else if (language.equals("2"))//2 represent English
+        {
+            Tuple<ArrayList<String>, StringBuffer> res = mytoken.tokenizeChn(Topicfile, stopwordPath);
+            tmp = res.first;
+            article = res.second.toString();
+//          tmp = mytoken.tokenizeChn(Topicfile, stopwordPath);
+        } else if (language.equals("2"))//2 represent English
             tmp = mytoken.tokenizeEng(Topicfile, stopwordPath);
         else if (language.equals("3"))//3 represent other
             tmp = mytoken.tokenizeEng(Topicfile, stopwordPath);
@@ -86,8 +91,11 @@ public class Doc {
             Tokenizer mytoken = new Tokenizer();
             ArrayList<String> tmp = new ArrayList<>();
             if (language.equals("1"))//1 represent Chinese
-                tmp = mytoken.tokenizeChn(path, stopwordPath);
-            else if (language.equals("2"))//2 represent English
+            {
+                Tuple<ArrayList<String>, StringBuffer> res = mytoken.tokenizeChn(path, stopwordPath);
+                tmp = res.first;
+                article = res.second.toString();
+            } else if (language.equals("2"))//2 represent English
                 tmp = mytoken.tokenizeEng(path, stopwordPath);
             else if (language.equals("3"))//3 represent other
                 tmp = mytoken.tokenizeEng(path, stopwordPath);
@@ -308,14 +316,10 @@ public class Doc {
             int pick = -1;
             for (int i = 0; i < snum; i++) {
                 double tmpscore = score[i];
-
-
                 for (int j : summaryId)
                     if (score[i] - sim[i][j] * score[j] * para < tmpscore)
                         tmpscore = score[i] - sim[i][j] * score[j] * para;
-
                 if (tmpscore / Math.pow(senLen.get(i), beta) > maxscore && !chosen[i] && len + senLen.get(i) < maxlen && senLen.get(i) >= 5) {
-
                     maxscore = tmpscore / Math.pow(senLen.get(i), beta);
                     pick = i;
 
@@ -328,6 +332,12 @@ public class Doc {
             summaryId.add(pick);
             if (len >= maxlen - 20)
                 break;
+        }
+        //// by xuyiqiang
+        if (snum == 0) {
+            summaryId.add(-1);
+        } else if (summaryId.isEmpty()) {
+            summaryId.add(0);
         }
         return summaryId;
     }
@@ -346,17 +356,20 @@ public class Doc {
                 return -o1.first.compareTo(o2.first);
             }
         });
-
-        int index = 0;
-        int sumlen = senLen.get(score_indexes[0].second);
-        while (sumlen <= maxlen) {
-            summaryId.add(score_indexes[index].second);
-            index++;
-            if (index >= snum) break;
-            sumlen += senLen.get(score_indexes[index].second);
-        }
-        if (summaryId.isEmpty()) {
-            summaryId.add(score_indexes[0].second);
+        if (snum == 0) {
+            summaryId.add(-1);
+        } else {
+            int index = 0;
+            int sumlen = senLen.get(score_indexes[0].second);
+            while (sumlen <= maxlen) {
+                summaryId.add(score_indexes[index].second);
+                index++;
+                if (index >= snum) break;
+                sumlen += senLen.get(score_indexes[index].second);
+            }
+            if (summaryId.isEmpty()) {
+                summaryId.add(score_indexes[0].second);
+            }
         }
         return summaryId;
     }

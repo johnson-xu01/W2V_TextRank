@@ -1,51 +1,14 @@
 package sum;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.Iterator;
 
-/**
- * args[0]:The path of the input.
- * Single-document summarization task: The path of the input file and this file can only contain one document you want to get the summary from.
- * Multi-document summarization task or topic-based multi-document summarization task: The path of the input directory and this directory can only contain one document set you want to get the summary from.
- * args[1]:The path of the output file and one file only contains one summary.
- * args[2]:The language of the document. 1: Chinese, 2: English, 3: other Western languages
- * args[3]:Specify which task to do.
- * 1: single-document summarization, 2: multi-document summarization,
- * 3: topic-based multi-document summarization
- * args[4]:The expected number of words in summary.
- * args[5]:Choose if you want to stem the input. (Only for English document)
- * 1: stem, 2: no stem, default = 1
- * args[6]:Choose whether you need remove the stop words.
- * If you need remove the stop words, you should input the path of stop word list.
- * Or we have prepared an English stop words list as file ��stopword_Eng��, you can use it by input ��y��.
- * If you don��t need remove the stop words, please input ��n��.
- * args[7]:Specify which redundancy removal method to use. ILP and Submodular needn't extra redundancy removal. default = 3 for ManifoldRank, default = 1 for the other methods which need redundancy removal
- * 1: MMR
- * 2: threshold: If the similarity between an unchosen sentence and the sentence chosen this time is upper than the threshold, this unchosen sentence will be deleted from candidate set.
- * 3: sum punishment: The scores of all unchosen sentences will decrease the product of penalty ratio and the similarity with the sentence chosen this time.
- * args[8]:The parameter of redundancy removal methods. default = 0.7
- * For MMR and sum punishment: it represents the penalty ratio.
- * For threshold: it represents the threshold.
- * args[9]:[0, 1] A scaling factor of sentence length when we choose sentences. default = 0.1
- */
-
-
-public class TextRank {
+public class TextRank_V2_test {
     public Doc myDoc = new Doc();
-    public int sumNum = 0;
     public double[][] similarity;
 
-    public void Summarize(String args[]) throws IOException {
-        if (args[3].equals("3")) {
-            System.out.println("The TextRank method can't solve topic-based multi-document summarization task.");
-            return;
-        }
-
-    	/* Read files */
+    public String Summarize(String args[]) throws IOException {
+        /* Read files */
         if (args[3].equals("1")) {
             String[] singleFile = new String[1];
             singleFile[0] = args[0];
@@ -89,7 +52,7 @@ public class TextRank {
             }
         }
 
-        //Calculate the TextRank score of sentences
+        //Calculate the TextRank_V2 score of sentences
         double[] uOld = new double[myDoc.snum];
         double[] u = new double[myDoc.snum];
         for (int i = 0; i < myDoc.snum; ++i) {
@@ -114,7 +77,7 @@ public class TextRank {
             }
             minus = 0.0;
             for (int j = 0; j < myDoc.snum; j++) {
-                double add = java.lang.Math.abs(u[j] - uOld[j]);
+                double add = Math.abs(u[j] - uOld[j]);
                 minus += add;
             }
         }
@@ -138,22 +101,14 @@ public class TextRank {
             myDoc.pickSentenceThreshold(u, threshold, Beta);
         else if (args[7].equals("3"))
             myDoc.pickSentenceSumpun(u, threshold);
-
-
-        /* Output the abstract */
-        try {
-            File outfile = new File(args[1]);
-            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(outfile), "utf-8");
-            BufferedWriter writer = new BufferedWriter(write);
+        String res = "";
+        if (myDoc.summaryId.get(0) < 0) {
+            res = myDoc.article;
+        } else {
             for (int i : myDoc.summaryId) {
-                //System.out.println(myDoc.originalSen.get(i));
-                writer.write(myDoc.originalSen.get(i));
-//                writer.write("\n");
+                res += myDoc.originalSen.get(i).trim();
             }
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("There are errors in the output.");
-            e.printStackTrace();
         }
+        return res;
     }
 }
