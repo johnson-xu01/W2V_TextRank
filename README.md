@@ -7,7 +7,7 @@
 ![](/jpg/result.jpg)
 
 ## 评价指标
-ROUGE1&2 ROUGE SU4 R&F(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/W04-1013)
+ROUGE1&2 ROUGE SU4 R&F[论文地址](http://www.aclweb.org/anthology/W04-1013)
 
 ## 使用说明
 可以直接在命令行中运行编译好的jar包，jar包及训练好的Word2Vec模型可以在[这里下载](http://pan.baidu.com/s/1geJO8aJ) ,密码为：3cau
