@@ -24,5 +24,5 @@ ROUGE1&2 ROUGE SU4 R&F[论文地址](http://www.aclweb.org/anthology/W04-1013)
 
 ## 示例
 ```
-java  -jar  W2V_TextRank.jar  –m  w2v_textrank  -n  60  –input  ./article.txt  –output  ./summay.txt  -w2v  ./wiki_zh_word2vec.model
+java -jar W2V_TextRank.jar –m w2v_textrank -n 60 –input ./article.txt –output ./summay.txt -w2v ./wiki_zh_word2vec.model
 ```
