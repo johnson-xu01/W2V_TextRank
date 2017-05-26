@@ -4,7 +4,7 @@
 文本自动摘要算法：用Word2Vec改进的TextRank算法
 
 ## 结果对比：在5000个中文文本样本上的结果
-![](https://github.com/xuyiqiang-learn/W2V_TextRank/tree/master/jpg/result.jpg)
+![](/jpg/result.jpg)
 
 ## 评价指标
 ROUGE1&2 ROUGE SU4 R&F(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/W04-1013)
@@ -22,5 +22,5 @@ ROUGE1&2 ROUGE SU4 R&F(ROUGE.py) [论文地址](http://www.aclweb.org/anthology/
 | -output| 指定输出文件路径（生成的摘要文本文件路径） | 
 | -w2v | 指定训练好的Word2Vec模型路径，可以在上面资源下载地址中下载在中文维基百科上训练好Word2Vec模型文件，使用者也可以使用自己训练好的Word2Vec模型| 
 
-## 示例:
-java -jar W2V_TextRank.jar –m w2v_textrank -n 60 –input ./article.txt –output ./summay.txt -w2v ./wiki_zh_word2vec.model
+## 示例
+java  -jar  W2V_TextRank.jar  –m  w2v_textrank  -n  60  –input  ./article.txt  –output  ./summay.txt  -w2v  ./wiki_zh_word2vec.model
