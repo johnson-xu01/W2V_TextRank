@@ -87,7 +87,7 @@ public class TextRank_V2 {
             }
             minus = 0.0;
             for (int j = 0; j < myDoc.snum; j++) {
-                double add = java.lang.Math.abs(u[j] - uOld[j]);
+                double add = Math.abs(u[j] - uOld[j]);
                 minus += add;
             }
         }

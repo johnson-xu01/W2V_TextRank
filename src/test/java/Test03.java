@@ -1,4 +1,3 @@
-import sum.TextRank_V1_test;
 import sum.TextRank_V2_test;
 
 public class Test03 {

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="stanford-ner">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../my_lib/PKUSUMSUM-lib/lib/stanford-ner.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -14,8 +14,8 @@ public class Examples1 {
         SimilarityHandler word2vec = SimilarityHandler.getInstance();
         word2vec.connect("/home/xuyiqiang/app/word2vec_model/wiki_zh_word2vec.model");//加载word2vec模型
 
-        arg[0] = "/home/xuyiqiang/app/nlpcc2017textsummarization/train_datas/0.txt";//inputPath
-        arg[1] = "/home/xuyiqiang/app/idea-IU-163.11103.6/workspace/GGSUMSUM/src/main/java/data/doc001_xxx.txt";//outputFile
+        arg[0] = "/home/xuyiqiang/app/idea-IU-163.11103.6/workspace/W2V_TextRank/src/main/java/data/doc001.txt";//inputPath
+        arg[1] = "/home/xuyiqiang/app/idea-IU-163.11103.6/workspace/W2V_TextRank/src/main/java/data/doc001_w2v.txt";//outputFile
         arg[2] = "1";//language
         arg[3] = "1";//type: single-document summarization
         arg[4] = "60";//abNum: the number of words in the final summary.

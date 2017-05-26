@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GGSUMSUM.iml" filepath="$PROJECT_DIR$/GGSUMSUM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/W2V_TextRank.iml" filepath="$PROJECT_DIR$/W2V_TextRank.iml" />
     </modules>
   </component>
 </project>

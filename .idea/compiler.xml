@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="GGSUMSUM" />
+        <module name="W2V_TextRank" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="GGSUMSUM" target="1.8" />
+      <module name="W2V_TextRank" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
