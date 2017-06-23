@@ -10,7 +10,7 @@
 ROUGE1&2 ROUGE SU4 R&F[参考论文](http://www.aclweb.org/anthology/W04-1013)
 
 ## 使用说明
-可以直接在命令行中运行编译好的jar包，jar包及训练好的Word2Vec模型可以在[这里下载](http://pan.baidu.com/s/1geJO8aJ) ,密码为：3cau
+可以直接在命令行中运行编译好的jar包，jar包及训练好的Word2Vec模型可以在[这里下载](https://pan.baidu.com/s/1c2H4Aa8) ,密码为：7qvd
 > java -jar W2V_TextRank.jar <参数>
 
 ## 参数说明
